@@ -1,0 +1,22 @@
+version: '3'
+# dc run --service-ports --rm go-dev
+
+services:
+
+  go-dev:
+    image: golang:1.8.1-alpine
+    ports:
+      - "8080:8080"
+    environment:
+      - PORT=8080
+    volumes:
+      - ${GOPATH}/src:/go/src
+      - go-bin:/go/bin
+    networks:
+      - go-dev
+
+networks:
+  go-dev:
+
+volumes:
+  go-bin:
